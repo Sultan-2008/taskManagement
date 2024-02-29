@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task</title>
+    <style>
+        body{
+            margin: 0;
+            background-color: lightslategrey;
+        }
+        #navbar{
+            background-color: white;
+            padding: 10px;
+            font-size: 18px;
+            
+        }
+        .container{
+            background-color: white;
+            width: 300px;
+            height: 350px;
+            margin-top: 30px;
+            margin-left: 60px;
+            
+        }
+        .title{
+            margin-top: 12px;
+            width: 80%;
+            margin-left: 20px;
+            outline: none;
+            padding: 5px;
+            
+        }
+        #btn{
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 0.4rem;
+            border: 0;
+            width: 85%;
+            margin-left: 18px;
+            background-color: green;
+            color: white;
+        }
+        #small1{
+            color: white;
+            margin-left:20px ;
+            position: absolute;
+            top: 60px;
+        }
+        #small2{
+            color: white;
+            margin-left: 250px;
+            position: absolute;
+            top: 60px;
+            
+        }
+        #small3{
+            color: white;
+            margin-left: 650px;
+            position: absolute;
+            top: 60px;
+        }
+        /* #taskList {
+    width: 700px;
+    background-color: white;
+    color: black;
+    display: flex;
+    position: absolute;
+    left: 390px;
+    top: 110px;
+    flex-direction: column; Display tasks in a column layout
+    margin-top: 20px; Add margin for space
+    padding: 10px; Optional padding for better visual appearance
+} */
+
+        button{
+            background-color: red;
+            border: 0;
+            color: white;
+            padding: 4px;
+            width: 50px;
+        }
+        #small1,
+#small2,
+#small3 {
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+#small1,
+#small2 {
+    background-color: lightslategray;
+}
+
+/* #small3 {
+    background-color: red;
+} */
+
+#small1 div,
+#small2 div {
+    padding: 8px;
+    margin: 5px;
+    border: 0;
+    width: 20px;
+    /* background-color: white; */
+}
+
+#small3 div {
+    text-align: center;
+    padding: 8px;
+    margin: 5px;
+}
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div id="navbar">To-Do List Web App</div>
+    </header>
+    <table>
+        <tr>
+            <td>
+                <div class="container">
+                    <input class="title" type="text" id="taskTitle" placeholder="Title" required>
+                    <textarea rows="14" class="title" id="taskDescription" placeholder="Description"></textarea>
+                    <button id="btn" onclick="saveTask()">Save</button>
+                </div>
+            </td>
+            <td>
+                <div id="small1">
+                    <h3>Title</h3>
+                </div>
+            </td>
+            <td>
+                <div id="small2">
+                    <h3>Description</h3>
+                </div>
+            </td>
+            <td>
+                <div id="small3">
+                    <h3>Delete</h3>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div id="taskList">
+        
+    </div>
+
+    <script>
+        function saveTask() {
+    // Get values from input fields
+    var title = document.getElementById('taskTitle').value;
+    var description = document.getElementById('taskDescription').value;
+
+    // Create divs for title, description, and delete
+    var titleDiv = document.createElement('div');
+    titleDiv.textContent = title;
+
+    var descriptionDiv = document.createElement('div');
+    descriptionDiv.textContent = description;
+
+    var deleteDiv = document.createElement('div');
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.onclick = function () {
+        deleteTask(this);
+    };
+    deleteDiv.appendChild(deleteButton);
+
+    // Append the divs to the taskList
+    document.getElementById('small1').appendChild(titleDiv);
+    document.getElementById('small2').appendChild(descriptionDiv);
+    document.getElementById('small3').appendChild(deleteDiv);
+
+    // Clear input fields after saving
+    document.getElementById('taskTitle').value = '';
+    document.getElementById('taskDescription').value = '';
+}
+
+function deleteTask(buttonElement) {
+    // Remove the parent div of the clicked delete button
+    var taskElement = buttonElement.parentElement.parentElement;
+    
+    // Ensure that only the added task is removed
+    if (taskElement.classList.contains('taskItem')) {
+        taskElement.remove();
+    }
+}
+    </script>
+</body>
+</html>
